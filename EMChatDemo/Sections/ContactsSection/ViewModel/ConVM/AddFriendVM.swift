@@ -10,4 +10,8 @@ import UIKit
 
 class AddFriendVM: NSObject {
 
+    override init() {
+        
+    }
+    
 }

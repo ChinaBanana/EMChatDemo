@@ -1,19 +1,22 @@
 PODS:
+  - HyphenateLite (3.3.0)
   - RxCocoa (3.3.1):
     - RxSwift (~> 3.3)
   - RxSwift (3.3.1)
   - SnapKit (3.2.0)
 
 DEPENDENCIES:
+  - HyphenateLite
   - RxCocoa
   - RxSwift
   - SnapKit
 
 SPEC CHECKSUMS:
+  HyphenateLite: 9f839c2e53e265233601a860466b78566fb52e21
   RxCocoa: 7dcb7a1860fc9cd0e23dae67ab105fc2916670b6
   RxSwift: 8fc9f2de6275a9101d518444e00bf32f1a42caac
   SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
 
-PODFILE CHECKSUM: c230451f3b260b352992dfe457b6105f0c98386a
+PODFILE CHECKSUM: 9e655415ce59a8cd871c6039e0772cfb7bea8b6a
 
 COCOAPODS: 1.2.0

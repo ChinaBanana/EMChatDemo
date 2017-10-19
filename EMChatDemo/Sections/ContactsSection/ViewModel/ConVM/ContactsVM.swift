@@ -9,5 +9,17 @@
 import UIKit
 
 class ContactsVM: NSObject {
+    
+    var section0 = [ContactItem(),
+                    ContactItem(),
+                    ContactItem()]
+    var contacts = [ContactItem]()
+    
+    override init() {
+        super.init()
+    }
 
+    func selectedIndex(_ index:IndexPath) -> () {
+        
+    }
 }

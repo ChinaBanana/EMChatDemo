@@ -10,6 +10,8 @@ import UIKit
 
 class ConversationViewController: UIViewController {
 
+    let viewModel = ConversationVM()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.background

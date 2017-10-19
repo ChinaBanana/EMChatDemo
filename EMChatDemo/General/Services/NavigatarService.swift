@@ -12,7 +12,6 @@ class NavigatarService: NSObject, UINavigationControllerDelegate {
 
     static let shared = NavigatarService()
     static let conversationCon = ConversationViewController()
-    static var isChatting:Bool = false
     
     class func push(_ viewCon:UIViewController, animated:Bool) {
         let rootCon = UIApplication.shared.keyWindow?.rootViewController
@@ -37,13 +36,15 @@ class NavigatarService: NSObject, UINavigationControllerDelegate {
     }
     
     class func pushToConversation() {
+        conversationCon.viewModel.isChatting = true
+        conversationCon.hidesBottomBarWhenPushed = true
         push(conversationCon, animated: true)
     }
     
     // MARK: UINavigationControllerDelegate
     func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationControllerOperation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         if operation == .pop && fromVC.isKind(of: ConversationViewController.self) {
-            NavigatarService.isChatting = false
+            NavigatarService.conversationCon.viewModel.isChatting = false
         }
         return nil
     }

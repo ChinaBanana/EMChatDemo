@@ -25,6 +25,9 @@
 		85D74E161F989295001106AC /* AddFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D74E151F989295001106AC /* AddFriendViewController.swift */; };
 		85D74E181F9892F5001106AC /* ContactsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D74E171F9892F5001106AC /* ContactsVM.swift */; };
 		85D74E1A1F989307001106AC /* AddFriendVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D74E191F989307001106AC /* AddFriendVM.swift */; };
+		85D74E1C1F989BB1001106AC /* ConversationVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D74E1B1F989BB1001106AC /* ConversationVM.swift */; };
+		85D74E1E1F98AC32001106AC /* ContactModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D74E1D1F98AC32001106AC /* ContactModels.swift */; };
+		85D74E201F98ACD5001106AC /* ContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D74E1F1F98ACD5001106AC /* ContactTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +63,9 @@
 		85D74E151F989295001106AC /* AddFriendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendViewController.swift; sourceTree = "<group>"; };
 		85D74E171F9892F5001106AC /* ContactsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsVM.swift; sourceTree = "<group>"; };
 		85D74E191F989307001106AC /* AddFriendVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendVM.swift; sourceTree = "<group>"; };
+		85D74E1B1F989BB1001106AC /* ConversationVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationVM.swift; sourceTree = "<group>"; };
+		85D74E1D1F98AC32001106AC /* ContactModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactModels.swift; sourceTree = "<group>"; };
+		85D74E1F1F98ACD5001106AC /* ContactTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTableViewCell.swift; sourceTree = "<group>"; };
 		AAAD392D156C284BDEC4C361 /* Pods_EMChatDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EMChatDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E910A30A8399F1B433048D92 /* Pods-EMChatDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EMChatDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EMChatDemo/Pods-EMChatDemo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -226,6 +232,7 @@
 		85D74DE31F987A1D001106AC /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				85D74E1D1F98AC32001106AC /* ContactModels.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -233,6 +240,7 @@
 		85D74DE41F987A1D001106AC /* View */ = {
 			isa = PBXGroup;
 			children = (
+				85D74E1F1F98ACD5001106AC /* ContactTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -454,6 +462,7 @@
 		85D74DFF1F987A4D001106AC /* ConVM */ = {
 			isa = PBXGroup;
 			children = (
+				85D74E1B1F989BB1001106AC /* ConversationVM.swift */,
 			);
 			path = ConVM;
 			sourceTree = "<group>";
@@ -626,6 +635,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				85D74E1C1F989BB1001106AC /* ConversationVM.swift in Sources */,
 				85D74E161F989295001106AC /* AddFriendViewController.swift in Sources */,
 				85D74E0C1F987AAD001106AC /* ConversationViewController.swift in Sources */,
 				85D74E081F987A93001106AC /* SettingViewController.swift in Sources */,
@@ -639,7 +649,9 @@
 				85D74E041F987A77001106AC /* ContactsViewController.swift in Sources */,
 				85D74E141F98889F001106AC /* NavigatarService.swift in Sources */,
 				85D74E101F987E8D001106AC /* UIKit+Extension.swift in Sources */,
+				85D74E1E1F98AC32001106AC /* ContactModels.swift in Sources */,
 				85D74E0E1F987AC9001106AC /* MainViewController.swift in Sources */,
+				85D74E201F98ACD5001106AC /* ContactTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

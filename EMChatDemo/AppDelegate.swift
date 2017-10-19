@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import HyphenateLite
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -26,6 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         window?.rootViewController = mainCon
         configApperance()
+        configEMClient()
         return true
     }
     
@@ -36,6 +38,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().tintColor = .white
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 18), NSAttributedStringKey.foregroundColor: UIColor.white]
         UIApplication.shared.statusBarStyle = .lightContent
+    }
+    
+    func configEMClient() -> () {
+        let options = EMOptions.init(appkey: "zhaohwem#cocoaleeochatdemo")
+        EMClient.shared().initializeSDK(with: options)
+        
+        
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

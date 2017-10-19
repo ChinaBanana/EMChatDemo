@@ -1,6 +1,10 @@
 # Acknowledgements
 This application makes use of the following third party libraries:
 
+## HyphenateLite
+
+Hyphenate Inc. 2016
+
 ## RxCocoa
 
 **The MIT License**
