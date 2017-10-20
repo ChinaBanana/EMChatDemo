@@ -8,6 +8,22 @@
 
 import UIKit
 
+let screen_width = UIScreen.main.bounds.size.width
+let screen_height = UIScreen.main.bounds.size.height
+
+// MARK: methods
+func timeOfTimeStamp(_ time:Double) -> String {
+    let timeInterval = time / 1000
+    let dateFormmater = DateFormatter.init()
+    dateFormmater.dateFormat = "YYYY-mm-dd HH:MM"
+    return dateFormmater.string(from: Date.init(timeIntervalSince1970: timeInterval))
+}
+
+func currentTimeStamp() -> TimeInterval {
+    return Date().timeIntervalSince1970 * 1000
+}
+
+// MARK: enums and extensions
 enum LayoutLimit {
     static let margin_left = 10
     static let margin_top = 8

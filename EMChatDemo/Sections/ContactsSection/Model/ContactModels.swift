@@ -6,8 +6,13 @@
 //  Copyright © 2017年 parkingto.com. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 struct ContactItem {
-    
+    let name:String
+    let image:UIImage
+    init(_ aName:String, aImage:UIImage ) {
+        name = aName
+        image = aImage
+    }
 }

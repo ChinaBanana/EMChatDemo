@@ -14,32 +14,18 @@ class EMChatService: NSObject {
 
     static let shared = EMChatService()
     
+    let disposeBag = DisposeBag.init()
     let clientSubject = PublishSubject<ClientEvent>()
     let messageSubject = PublishSubject<MessageEvent>()
     let conversationSubject = PublishSubject<ConversationEvent>()
     let contactSubject = PublishSubject<ContactEvent>()
     
-    enum ClientEvent {
-        case logIn(Bool)
-        case logOut(Bool)
-    }
-    
-    enum ContactEvent {
-        case addContact
-    }
-    
-    enum MessageEvent {
-        case receiveNewMessage(EMMessage)
-        case sendANewMessage(EMMessage)
-    }
-    
-    enum ConversationEvent {
-        case newConversation(EMConversation)
-    }
-    
     override init() {
         super.init()
         EMClient.shared().add(self, delegateQueue: DispatchQueue.main)
+        debugPrint(EMClient.shared())
+        debugPrint(EMClient.shared().chatManager)
+        
         EMClient.shared().chatManager.add(self, delegateQueue: DispatchQueue.main)
         EMClient.shared().contactManager.add(self, delegateQueue: DispatchQueue.main)
         EMClient.shared().roomManager.add(self, delegateQueue: DispatchQueue.main)
@@ -57,6 +43,22 @@ class EMChatService: NSObject {
 
 extension EMChatService {
     
+    enum ClientEvent {
+        case register(Bool)
+        case login(Bool)
+        case logOut(Bool)
+    }
+    
+    func register(_ username:String, password:String) -> () {
+        EMClient.shared().register(withUsername: username, password: password) { (aMessage, aError) in
+            guard aError == nil else {
+                debugPrint("Register Error:\(aError!.errorDescription)")
+                return
+            }
+            self.clientSubject.onNext(.register(true))
+        }
+    }
+    
     func logInAccount(_ username:String, password:String) -> () {
         EMClient.shared().login(withUsername: username, password: password) { (message, aError) in
             guard aError == nil else {
@@ -65,6 +67,7 @@ extension EMChatService {
             }
             let option = EMClient.shared().options
             option?.isAutoLogin = true
+            self.clientSubject.onNext(.login(true))
         }
     }
     
@@ -74,7 +77,7 @@ extension EMChatService {
                 debugPrint("logout error:\(aError!.errorDescription)")
                 return
             }
-            
+            self.clientSubject.onNext(.logOut(true))
         }
     }
 }
@@ -99,6 +102,29 @@ extension EMChatService : EMClientDelegate {
 
 extension EMChatService : EMChatManagerDelegate {
     
+    enum MessageEvent {
+        case receiveNewMessage(EMMessage)
+        case sendANewMessage(EMMessage)
+    }
+    
+    enum ConversationEvent {
+        case allConversations(Array<EMConversation>)
+        case newConversation(EMConversation)
+    }
+    
+    func getConversations() -> () {
+        conversationSubject.onNext(.allConversations(EMClient.shared().chatManager.getAllConversations() as! Array<EMConversation>))
+    }
+    
+    func deleteConversation(_ conversationID:String) -> () {
+        EMClient.shared().chatManager.deleteConversation(conversationID, isDeleteMessages: true) { (aMessage, aError) in
+            guard aError == nil else {
+                debugPrint("delete conversation Error:\(aError!.errorDescription)")
+                return
+            }
+        }
+    }
+    
     func messagesDidReceive(_ aMessages: [Any]!) {
         
     }
@@ -113,6 +139,33 @@ extension EMChatService : EMChatManagerDelegate {
 }
 
 extension EMChatService : EMContactManagerDelegate {
+    
+    enum ContactEvent {
+        case addContact
+        case allContacts(Array<Any>)
+    }
+    
+    func getContacts() -> () {
+        EMClient.shared().contactManager.getContactsFromServer { (contacts, aError) in
+            guard aError == nil, contacts != nil else{
+                return
+            }
+            self.contactSubject.onNext(.allContacts(contacts!))
+        }
+    }
+    
+    func addFriend(_ username:String) -> () {
+        EMClient.shared().contactManager.addContact(username, message: "Add me as a friend") { (message, aError) in
+            guard aError == nil else {
+                debugPrint("Add contact error:\(aError!.errorDescription)")
+                return
+            }
+        }
+    }
+    
+    func deleteFriend(_ username:String) -> () {
+        EMClient.shared().contactManager.deleteContact(username, isDeleteConversation: true)
+    }
     
     // 旁友接收了我的好友请求
     func friendRequestDidApprove(byUser aUsername: String!) {

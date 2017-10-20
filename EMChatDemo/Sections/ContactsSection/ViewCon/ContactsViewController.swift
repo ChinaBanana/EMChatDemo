@@ -17,6 +17,22 @@ class ContactsViewController: UIViewController, UITableViewDelegate, UITableView
         super.viewDidLoad()
         view.backgroundColor = UIColor.background
         
+        viewModel.refreshSubject.subscribe { (event) in
+            switch event {
+            case .next(let element):
+                switch element {
+                case .reloadSection1:
+                    self.tableView.reloadSections(IndexSet.init(integer: 1), with: .none)
+                }
+            case .error(let error):
+                debugPrint(error)
+                break
+            case .completed:
+                debugPrint("disposed")
+                break
+            }
+        }.addDisposableTo(viewModel.disposeBag)
+        
         navigationItem.rightBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: .add, target: self, action: #selector(addNewFriend))
         
         tableView = UITableView.init(frame: view.bounds, style: .grouped)
@@ -30,7 +46,7 @@ class ContactsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     @objc func addNewFriend() {
-        
+        viewModel.addFriend()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

@@ -7,12 +7,22 @@
 //
 
 import UIKit
+import RxSwift
+import HyphenateLite
 
 class ConversationVM: NSObject {
+    
+    enum RefreshUIType {
+        case reloadTableView
+    }
 
+    let disposeBag = DisposeBag.init()
+    let refreshUISubject = PublishSubject<RefreshUIType>()
+    
     var isChatting:Bool = false
     
     override init() {
         super.init()
+        
     }
 }

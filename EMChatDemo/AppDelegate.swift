@@ -18,14 +18,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return UIApplication.shared.delegate as! AppDelegate
     }
     
-    let logInCon = LoginViewController()
-    let mainCon = MainViewController()
+    lazy var logInCon:UINavigationController = {
+        return UINavigationController.init(rootViewController: LoginViewController())
+    }()
+    
+    lazy var mainCon:MainViewController = {
+        return MainViewController()
+    }()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow.init(frame: UIScreen.main.bounds)
         window?.backgroundColor = .white
-        window?.makeKeyAndVisible()
-        window?.rootViewController = mainCon
         configApperance()
         configEMClient()
         return true
@@ -44,7 +47,45 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let options = EMOptions.init(appkey: "zhaohwem#cocoaleeochatdemo")
         EMClient.shared().initializeSDK(with: options)
         
+        EMChatService.shared.clientSubject.subscribe { (event) in
+            switch event {
+            case .next(let element):
+                switch element {
+                case .login(let succeed):
+                    if succeed {
+                        self.transformWindow(self.mainCon)
+                    }
+                case .logOut(let succeed):
+                    if succeed {
+                        self.transformWindow(self.logInCon)
+                    }
+                default:
+                    break
+                }
+            case .error(let error):
+                debugPrint("Appdelegate Error:\(error)")
+            case .completed:
+                debugPrint("Completed")
+            }
+        }.addDisposableTo(EMChatService.shared.disposeBag)
         
+        debugPrint("Has logedin \(EMClient.shared().isLoggedIn), auto login \(EMClient.shared().isAutoLogin)")
+        
+        if EMClient.shared().isLoggedIn {
+            debugPrint(EMClient.shared().currentUsername)
+            window?.rootViewController = mainCon
+        }else {
+            window?.rootViewController = logInCon
+        }
+        window?.makeKeyAndVisible()
+    }
+    
+    func transformWindow(_ viewCon:UIViewController) -> () {
+        UIView.transition(with: viewCon.view, duration: 0.35, options: UIViewAnimationOptions.transitionFlipFromBottom, animations: {
+            self.window?.rootViewController = viewCon
+        }) { (completion) in
+            
+        }
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
