@@ -16,21 +16,55 @@ class ConversationTableViewCell: UITableViewCell {
     
     let avatarImage = UIImageView()
     let nameLabel = UILabel()
+    let bubleImageView = UIImageView()
+    let activityView = UIActivityIndicatorView.init(activityIndicatorStyle: .gray)
     
+    var messageDetailView:UIView?
+    
+    lazy var textContent = TextContent()
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        selectionStyle = .none
+        
         contentView.addSubview(avatarImage)
         contentView.addSubview(nameLabel)
+        contentView.addSubview(bubleImageView)
         
-        avatarImage.frame = CGRect.init(x: LayoutLimit.margin_left, y: LayoutLimit.margin_top, width: 38, height: 38)
+        avatarImage.frame = CGRect.init(x: Limit.margin_left, y: Limit.margin_top, width: 38, height: 38)
         avatarImage.layer.cornerRadius = 4
         avatarImage.clipsToBounds = true
         avatarImage.image = #imageLiteral(resourceName: "default_head")
         
-        nameLabel.frame = CGRect.init(x: avatarImage.right + 10, y: avatarImage.top, width: screen_width - avatarImage.right - 140, height: avatarImage.height / 2)
         nameLabel.font = UIFont.standard
         
+    }
+    
+    func configContent(_ model:ConversationItem) -> () {
+        
+        messageDetailView?.removeFromSuperview()
+        messageDetailView = nil
+        
+        if model.isSendByMe {
+            bubleImageView.image = #imageLiteral(resourceName: "chat_sender_bg").stretchableImage(withLeftCapWidth: 5, topCapHeight: 35)
+        }else{
+            bubleImageView.image = #imageLiteral(resourceName: "chat_receiver_bg").stretchableImage(withLeftCapWidth: 35, topCapHeight: 35)
+        }
+        avatarImage.frame = model.avatarLayout.frame
+        bubleImageView.frame = model.bubleLayout.frame
+        
+        switch model.messageBody.type {
+        case EMMessageBodyTypeText:
+            let textBody = model.messageBody as! EMTextMessageBody
+            textContent.frame = model.contentLayout.frame
+            textContent.text = textBody.text
+            messageDetailView = textContent
+        default:
+            break
+        }
+        
+        bubleImageView.addSubview(messageDetailView!)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -44,7 +78,7 @@ class ConversationTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
 

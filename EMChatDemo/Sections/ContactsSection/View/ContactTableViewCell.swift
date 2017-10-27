@@ -10,10 +10,10 @@ import UIKit
 
 class ContactTableViewCell: UITableViewCell {
 
-    var contact:ContactItem?
     let avatarImage = UIImageView()
     let nameLabel = UILabel()
     let notifyDot = UIView.dot()
+    let viewModel = ContactTableViewCellVM()
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -21,7 +21,7 @@ class ContactTableViewCell: UITableViewCell {
         contentView.addSubview(nameLabel)
         contentView.addSubview(notifyDot)
         
-        avatarImage.frame = CGRect.init(x: LayoutLimit.margin_left, y: LayoutLimit.margin_top, width: 34, height: 34)
+        avatarImage.frame = CGRect.init(x: Limit.margin_left, y: Limit.margin_top, width: 34, height: 34)
         avatarImage.layer.cornerRadius = 4
         avatarImage.clipsToBounds = true
         
@@ -29,6 +29,16 @@ class ContactTableViewCell: UITableViewCell {
         
         nameLabel.frame = CGRect.init(x: avatarImage.right + 8, y: avatarImage.top, width: 200, height: avatarImage.height)
         nameLabel.font = UIFont.standard
+        
+        viewModel.refreshUISubject.subscribe { (event) in
+            guard let element = event.element else {
+                return
+            }
+            switch element {
+            case .showDot(let show):
+                self.notifyDot.isHidden = show
+            }
+        }.addDisposableTo(viewModel.disposeBag)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -47,7 +57,7 @@ class ContactTableViewCell: UITableViewCell {
     }
     
     func configContent(_ model:ContactItem) -> () {
-        contact = model
+        viewModel.contactItem = model
         nameLabel.text = model.name
         avatarImage.image = model.image
     }

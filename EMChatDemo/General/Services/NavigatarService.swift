@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import HyphenateLite
 
-class NavigatarService: NSObject, UINavigationControllerDelegate {
+class NavigatarService: NSObject {
 
     static let shared = NavigatarService()
     static let conversationCon = ConversationViewController()
@@ -41,12 +42,20 @@ class NavigatarService: NSObject, UINavigationControllerDelegate {
         push(conversationCon, animated: true)
     }
     
-    // MARK: UINavigationControllerDelegate
+    class func pushToConversation(_ conversation:EMConversation) {
+        conversationCon.viewModel.isChatting = true
+        conversationCon.hidesBottomBarWhenPushed = true
+        conversationCon.viewModel.conversation = conversation
+        push(conversationCon, animated: true)
+    }
+}
+
+// MARK: UINavigationControllerDelegate
+extension NavigatarService : UINavigationControllerDelegate {
     func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationControllerOperation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         if operation == .pop && fromVC.isKind(of: ConversationViewController.self) {
             NavigatarService.conversationCon.viewModel.isChatting = false
         }
         return nil
     }
-    
 }

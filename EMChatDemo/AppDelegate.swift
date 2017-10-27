@@ -18,13 +18,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return UIApplication.shared.delegate as! AppDelegate
     }
     
-    lazy var logInCon:UINavigationController = {
-        return UINavigationController.init(rootViewController: LoginViewController())
-    }()
+    var logInCon:UINavigationController  {
+        get {
+            return UINavigationController.init(rootViewController: LoginViewController())
+        }
+    }
     
-    lazy var mainCon:MainViewController = {
-        return MainViewController()
-    }()
+    var mainCon:MainViewController {
+        get {
+            return MainViewController()
+        }
+    }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow.init(frame: UIScreen.main.bounds)

@@ -8,12 +8,21 @@
 
 /* Begin PBXBuildFile section */
 		80B7D6342B3875EE50FFD289 /* Pods_EMChatDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAAD392D156C284BDEC4C361 /* Pods_EMChatDemo.framework */; };
+		8542A4DD1F9EEF4300ACDB6B /* SystemNotifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8542A4DC1F9EEF4300ACDB6B /* SystemNotifyViewController.swift */; };
+		8542A4DF1F9EEF5E00ACDB6B /* SystemNotifyVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8542A4DE1F9EEF5E00ACDB6B /* SystemNotifyVM.swift */; };
+		8542A4E11F9EF4F300ACDB6B /* GroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8542A4E01F9EF4F300ACDB6B /* GroupViewController.swift */; };
+		854CCF961FA1E75500D76025 /* SystemNotifyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854CCF951FA1E75500D76025 /* SystemNotifyTableViewCell.swift */; };
+		854CCF981FA2D3A600D76025 /* ContactTableViewCellVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854CCF971FA2D3A600D76025 /* ContactTableViewCellVM.swift */; };
 		859B0FAB1F99B01D00583AD3 /* SettingVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859B0FAA1F99B01D00583AD3 /* SettingVM.swift */; };
 		85CB4DAA1F99DA12002F71DF /* ConversationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CB4DA91F99DA12002F71DF /* ConversationTableViewCell.swift */; };
 		85CB4DAC1F99E524002F71DF /* ConversationTableViewCellVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CB4DAB1F99E524002F71DF /* ConversationTableViewCellVM.swift */; };
 		85CB4DAE1F99E87A002F71DF /* ChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CB4DAD1F99E87A002F71DF /* ChatTableViewCell.swift */; };
 		85CB4DB01F99E895002F71DF /* ChatVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CB4DAF1F99E895002F71DF /* ChatVM.swift */; };
 		85CB4DB21F99E8A8002F71DF /* ChatTableViewCellVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CB4DB11F99E8A7002F71DF /* ChatTableViewCellVM.swift */; };
+		85CB4DB41F9D7D75002F71DF /* TextContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CB4DB31F9D7D75002F71DF /* TextContent.swift */; };
+		85CB4DB61F9D841D002F71DF /* Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CB4DB51F9D841D002F71DF /* Layout.swift */; };
+		85CB4DB81F9D85D6002F71DF /* ConversationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CB4DB71F9D85D6002F71DF /* ConversationItem.swift */; };
+		85CB4DBA1F9D9387002F71DF /* InputContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CB4DB91F9D9387002F71DF /* InputContentView.swift */; };
 		85D74DBA1F986A80001106AC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D74DB91F986A80001106AC /* AppDelegate.swift */; };
 		85D74DC11F986A80001106AC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85D74DC01F986A80001106AC /* Assets.xcassets */; };
 		85D74DC41F986A80001106AC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85D74DC21F986A80001106AC /* LaunchScreen.storyboard */; };
@@ -50,12 +59,21 @@
 
 /* Begin PBXFileReference section */
 		258ECFAD9A9DB0C063FE79E3 /* Pods-EMChatDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EMChatDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-EMChatDemo/Pods-EMChatDemo.release.xcconfig"; sourceTree = "<group>"; };
+		8542A4DC1F9EEF4300ACDB6B /* SystemNotifyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemNotifyViewController.swift; sourceTree = "<group>"; };
+		8542A4DE1F9EEF5E00ACDB6B /* SystemNotifyVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemNotifyVM.swift; sourceTree = "<group>"; };
+		8542A4E01F9EF4F300ACDB6B /* GroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupViewController.swift; sourceTree = "<group>"; };
+		854CCF951FA1E75500D76025 /* SystemNotifyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemNotifyTableViewCell.swift; sourceTree = "<group>"; };
+		854CCF971FA2D3A600D76025 /* ContactTableViewCellVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTableViewCellVM.swift; sourceTree = "<group>"; };
 		859B0FAA1F99B01D00583AD3 /* SettingVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingVM.swift; sourceTree = "<group>"; };
 		85CB4DA91F99DA12002F71DF /* ConversationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationTableViewCell.swift; sourceTree = "<group>"; };
 		85CB4DAB1F99E524002F71DF /* ConversationTableViewCellVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationTableViewCellVM.swift; sourceTree = "<group>"; };
 		85CB4DAD1F99E87A002F71DF /* ChatTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatTableViewCell.swift; sourceTree = "<group>"; };
 		85CB4DAF1F99E895002F71DF /* ChatVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatVM.swift; sourceTree = "<group>"; };
 		85CB4DB11F99E8A7002F71DF /* ChatTableViewCellVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatTableViewCellVM.swift; sourceTree = "<group>"; };
+		85CB4DB31F9D7D75002F71DF /* TextContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextContent.swift; sourceTree = "<group>"; };
+		85CB4DB51F9D841D002F71DF /* Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Layout.swift; sourceTree = "<group>"; };
+		85CB4DB71F9D85D6002F71DF /* ConversationItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationItem.swift; sourceTree = "<group>"; };
+		85CB4DB91F9D9387002F71DF /* InputContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputContentView.swift; sourceTree = "<group>"; };
 		85D74DB61F986A80001106AC /* EMChatDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EMChatDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		85D74DB91F986A80001106AC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		85D74DC01F986A80001106AC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -260,6 +278,7 @@
 			isa = PBXGroup;
 			children = (
 				85D74E1F1F98ACD5001106AC /* ContactTableViewCell.swift */,
+				854CCF951FA1E75500D76025 /* SystemNotifyTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -269,6 +288,8 @@
 			children = (
 				85D74E031F987A77001106AC /* ContactsViewController.swift */,
 				85D74E151F989295001106AC /* AddFriendViewController.swift */,
+				8542A4DC1F9EEF4300ACDB6B /* SystemNotifyViewController.swift */,
+				8542A4E01F9EF4F300ACDB6B /* GroupViewController.swift */,
 			);
 			path = ViewCon;
 			sourceTree = "<group>";
@@ -287,6 +308,7 @@
 			children = (
 				85D74E171F9892F5001106AC /* ContactsVM.swift */,
 				85D74E191F989307001106AC /* AddFriendVM.swift */,
+				8542A4DE1F9EEF5E00ACDB6B /* SystemNotifyVM.swift */,
 			);
 			path = ConVM;
 			sourceTree = "<group>";
@@ -294,6 +316,7 @@
 		85D74DE81F987A1D001106AC /* ViewVM */ = {
 			isa = PBXGroup;
 			children = (
+				854CCF971FA2D3A600D76025 /* ContactTableViewCellVM.swift */,
 			);
 			path = ViewVM;
 			sourceTree = "<group>";
@@ -417,6 +440,7 @@
 			children = (
 				85D74DF81F987A1D001106AC /* Extension */,
 				85D74DF91F987A1D001106AC /* Services */,
+				85CB4DB51F9D841D002F71DF /* Layout.swift */,
 			);
 			path = General;
 			sourceTree = "<group>";
@@ -453,6 +477,7 @@
 		85D74DFB1F987A4D001106AC /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				85CB4DB71F9D85D6002F71DF /* ConversationItem.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -461,6 +486,8 @@
 			isa = PBXGroup;
 			children = (
 				85CB4DA91F99DA12002F71DF /* ConversationTableViewCell.swift */,
+				85CB4DB91F9D9387002F71DF /* InputContentView.swift */,
+				85CB4DB31F9D7D75002F71DF /* TextContent.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -659,28 +686,37 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8542A4E11F9EF4F300ACDB6B /* GroupViewController.swift in Sources */,
 				85D74E1C1F989BB1001106AC /* ConversationVM.swift in Sources */,
 				85D74E161F989295001106AC /* AddFriendViewController.swift in Sources */,
 				85D74E0C1F987AAD001106AC /* ConversationViewController.swift in Sources */,
 				85D74E081F987A93001106AC /* SettingViewController.swift in Sources */,
+				8542A4DF1F9EEF5E00ACDB6B /* SystemNotifyVM.swift in Sources */,
 				85D74E061F987A89001106AC /* LoginViewController.swift in Sources */,
 				85D74E181F9892F5001106AC /* ContactsVM.swift in Sources */,
 				85D74E021F987A57001106AC /* Marco.swift in Sources */,
+				85CB4DB81F9D85D6002F71DF /* ConversationItem.swift in Sources */,
 				859B0FAB1F99B01D00583AD3 /* SettingVM.swift in Sources */,
 				85CB4DAE1F99E87A002F71DF /* ChatTableViewCell.swift in Sources */,
+				854CCF961FA1E75500D76025 /* SystemNotifyTableViewCell.swift in Sources */,
 				85D74DBA1F986A80001106AC /* AppDelegate.swift in Sources */,
 				85D74E121F9880C0001106AC /* EMChatService.swift in Sources */,
 				85D74E1A1F989307001106AC /* AddFriendVM.swift in Sources */,
 				85D74E0A1F987AA0001106AC /* ChatViewController.swift in Sources */,
+				8542A4DD1F9EEF4300ACDB6B /* SystemNotifyViewController.swift in Sources */,
 				85D74E041F987A77001106AC /* ContactsViewController.swift in Sources */,
+				85CB4DB61F9D841D002F71DF /* Layout.swift in Sources */,
 				85D74E221F998B92001106AC /* UIView+Extension.swift in Sources */,
+				854CCF981FA2D3A600D76025 /* ContactTableViewCellVM.swift in Sources */,
 				85D74E141F98889F001106AC /* NavigatarService.swift in Sources */,
 				85D74E101F987E8D001106AC /* UIKit+Extension.swift in Sources */,
 				85D74E1E1F98AC32001106AC /* ContactModels.swift in Sources */,
 				85CB4DB21F99E8A8002F71DF /* ChatTableViewCellVM.swift in Sources */,
 				85CB4DB01F99E895002F71DF /* ChatVM.swift in Sources */,
+				85CB4DB41F9D7D75002F71DF /* TextContent.swift in Sources */,
 				85CB4DAA1F99DA12002F71DF /* ConversationTableViewCell.swift in Sources */,
 				85D74E0E1F987AC9001106AC /* MainViewController.swift in Sources */,
+				85CB4DBA1F9D9387002F71DF /* InputContentView.swift in Sources */,
 				85CB4DAC1F99E524002F71DF /* ConversationTableViewCellVM.swift in Sources */,
 				85D74E241F99992C001106AC /* LoginViewModel.swift in Sources */,
 				85D74E201F98ACD5001106AC /* ContactTableViewCell.swift in Sources */,

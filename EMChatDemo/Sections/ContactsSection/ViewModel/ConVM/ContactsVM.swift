@@ -19,9 +19,11 @@ class ContactsVM: NSObject {
     let disposeBag = DisposeBag.init()
     let refreshSubject = PublishSubject<RefreshUIType>()
     
+    private lazy var groupCon = GroupViewController()
+    private lazy var systemNotifyCon = SystemNotifyViewController()
     private lazy var addFriendCon = AddFriendViewController()
     
-    var section0 = [ContactItem.init("消息与通知", aImage:#imageLiteral(resourceName: "newFriends")),
+    let section0 = [ContactItem.init("消息与通知", aImage:#imageLiteral(resourceName: "newFriends")),
                     ContactItem.init("群组", aImage:#imageLiteral(resourceName: "groupPrivateHeader")),
                     ContactItem.init("聊天室", aImage:#imageLiteral(resourceName: "groupPrivateHeader"))]
     var contacts = [ContactItem]()
@@ -29,21 +31,20 @@ class ContactsVM: NSObject {
     override init() {
         super.init()
         EMChatService.shared.contactSubject.subscribe { (event) in
-            switch event {
-            case .next(let element):
-                switch element {
-                case .addContact:
-                    break
-                case .allContacts(let contacts):
-                    let items = contacts as! Array<String>
-                    for item in items {
-                        self.contacts.append(ContactItem.init(item, aImage:#imageLiteral(resourceName: "default_head")))
-                        self.refreshSubject.onNext(.reloadSection1)
-                    }
+            
+            guard let element = event.element else {
+                return
+            }
+            switch element {
+            case .addContact:
+                break
+            case .allContacts(let contacts):
+                let items = contacts as! Array<String>
+                for item in items {
+                    self.contacts.append(ContactItem.init(item, aImage:#imageLiteral(resourceName: "default_head")))
+                    self.refreshSubject.onNext(.reloadSection1)
                 }
-            case .error(let error):
-                debugPrint(error)
-            case .completed:
+            default:
                 break
             }
         }.addDisposableTo(disposeBag)
@@ -54,10 +55,18 @@ class ContactsVM: NSObject {
     func selectedIndex(_ index:IndexPath) -> () {
         switch index.section {
         case 0:
+            switch index.row {
+            case 0:
+                NavigatarService.push(systemNotifyCon, animated: true)
+            case 1:
+                break
+            default:
+                break
+            }
             break
         case 1:
-            
-            break
+            NavigatarService.pushToConversation()
+            EMChatService.shared.newConversation(contacts[index.row].name, type:EMConversationTypeChat)
         default:
             break
         }

@@ -24,9 +24,9 @@ func currentTimeStamp() -> TimeInterval {
 }
 
 // MARK: enums and extensions
-enum LayoutLimit {
-    static let margin_left = 10
-    static let margin_top = 8
+enum Limit {
+    static let margin_left:CGFloat = 10
+    static let margin_top:CGFloat = 8
 }
 
 enum UserDefaultsKey {
@@ -37,6 +37,7 @@ enum UserDefaultsKey {
 extension UIColor {
     static let main = UIColor.init(white: 0.2, alpha: 0.6)
     static let background = UIColor.init(white: 0.95, alpha: 1)
+    static let light = UIColor.init(white: 0.5, alpha: 0.5)
 }
 
 extension UIFont {

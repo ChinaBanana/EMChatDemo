@@ -28,7 +28,7 @@ class ChatTableViewCell: UITableViewCell {
         contentView.addSubview(notifyLabel)
         contentView.addSubview(timeLabel)
         
-        avatarImage.frame = CGRect.init(x: LayoutLimit.margin_left, y: LayoutLimit.margin_top, width: 38, height: 38)
+        avatarImage.frame = CGRect.init(x: Limit.margin_left, y: Limit.margin_top, width: 38, height: 38)
         avatarImage.layer.cornerRadius = 4
         avatarImage.clipsToBounds = true
         avatarImage.image = #imageLiteral(resourceName: "default_head")

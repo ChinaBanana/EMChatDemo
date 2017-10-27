@@ -112,6 +112,11 @@ extension EMChatService : EMChatManagerDelegate {
         case newConversation(EMConversation)
     }
     
+    func newConversation(_ conversationId:String, type:EMConversationType) -> () {
+        let newConversation = EMClient.shared().chatManager.getConversation(conversationId, type:type , createIfNotExist: true)
+        conversationSubject.onNext(.newConversation(newConversation!))
+    }
+    
     func getConversations() -> () {
         conversationSubject.onNext(.allConversations(EMClient.shared().chatManager.getAllConversations() as! Array<EMConversation>))
     }
@@ -122,6 +127,19 @@ extension EMChatService : EMChatManagerDelegate {
                 debugPrint("delete conversation Error:\(aError!.errorDescription)")
                 return
             }
+        }
+    }
+    
+    func sendMessage(_ message:EMMessage, progress:@escaping(Int32) -> (), result:@escaping(EMMessage) -> ()) -> () {
+        EMClient.shared().chatManager.send(message, progress: { (aProgress) in
+            progress(aProgress)
+        }) { (aMessage, aError) in
+            guard aError == nil, aMessage != nil else {
+                debugPrint(aError!.errorDescription)
+                return
+            }
+            result(aMessage!)
+            self.messageSubject.onNext(.sendANewMessage(aMessage!))
         }
     }
     
@@ -143,6 +161,9 @@ extension EMChatService : EMContactManagerDelegate {
     enum ContactEvent {
         case addContact
         case allContacts(Array<Any>)
+        case receiveRequest(String)
+        case acceptRequestSucceed(String)
+        case declineRequestSucceed(String)
     }
     
     func getContacts() -> () {
@@ -160,7 +181,24 @@ extension EMChatService : EMContactManagerDelegate {
                 debugPrint("Add contact error:\(aError!.errorDescription)")
                 return
             }
+            debugPrint("Add request has been send")
         }
+    }
+    
+    func acceptFriendRequest(_ username:String) -> () {
+        let error = EMClient.shared().contactManager.acceptInvitation(forUsername: username)
+        guard error == nil else {
+            return
+        }
+        contactSubject.onNext(.acceptRequestSucceed(username))
+    }
+    
+    func declineFriendRequest(_ username:String) -> () {
+        let error = EMClient.shared().contactManager.declineInvitation(forUsername: username)
+        guard error == nil else {
+            return
+        }
+        contactSubject.onNext(.declineRequestSucceed(username))
     }
     
     func deleteFriend(_ username:String) -> () {
@@ -179,7 +217,7 @@ extension EMChatService : EMContactManagerDelegate {
     
     // 收到了旁友的好友请求
     func friendRequestDidReceive(fromUser aUsername: String!, message aMessage: String!) {
-        
+        contactSubject.onNext(.receiveRequest(aUsername))
     }
     
     func friendshipDidAdd(byUser aUsername: String!) {

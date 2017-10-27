@@ -14,4 +14,7 @@ class AddFriendVM: NSObject {
         
     }
     
+    func addFriend(_ id:String) -> () {
+        EMChatService.shared.addFriend(id)
+    }
 }

@@ -38,4 +38,8 @@ class ChatVM: NSObject {
         
         EMChatService.shared.getConversations()
     }
+    
+    func pushToConversationCon(_ indexPath:IndexPath) -> () {
+        NavigatarService.pushToConversation(conversations[indexPath.row])
+    }
 }

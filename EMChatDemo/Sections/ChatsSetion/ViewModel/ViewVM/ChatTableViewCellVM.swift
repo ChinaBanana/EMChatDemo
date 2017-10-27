@@ -13,8 +13,22 @@ import RxSwift
 class ChatTableViewCellVM: NSObject {
 
     var conversation:EMConversation?
+    let disposeBag = DisposeBag.init()
     
     override init() {
         super.init()
+        EMChatService.shared.messageSubject.subscribe { (event) in
+            guard let element = event.element else {
+                return
+            }
+            switch element {
+            case .receiveNewMessage(let aMessage):
+                guard aMessage.conversationId == self.conversation?.conversationId else {
+                    return
+                }
+            default:
+                break
+            }
+        }.addDisposableTo(disposeBag)
     }
 }
