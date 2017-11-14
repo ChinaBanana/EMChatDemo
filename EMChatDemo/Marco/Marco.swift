@@ -27,6 +27,7 @@ func currentTimeStamp() -> TimeInterval {
 enum Limit {
     static let margin_left:CGFloat = 10
     static let margin_top:CGFloat = 8
+    static let thumbImage:CGFloat = 120
 }
 
 enum UserDefaultsKey {

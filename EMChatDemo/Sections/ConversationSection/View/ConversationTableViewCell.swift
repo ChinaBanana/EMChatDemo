@@ -21,7 +21,18 @@ class ConversationTableViewCell: UITableViewCell {
     
     var messageDetailView:UIView?
     
-    lazy var textContent = TextContent()
+    lazy var textContent:UILabel = {
+        let label = UILabel.init()
+        label.font = UIFont.standard
+        label.numberOfLines = 0
+        return label
+    }()
+    
+    lazy var imageContent:UIButton = {
+        let button = UIButton.init(frame: .zero)
+        button.addTarget(self, action: #selector(imageBtnClicked(_:)), for: .touchUpInside)
+        return button
+    }()
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -60,11 +71,24 @@ class ConversationTableViewCell: UITableViewCell {
             textContent.frame = model.contentLayout.frame
             textContent.text = textBody.text
             messageDetailView = textContent
+        case EMMessageBodyTypeImage:
+            let imageBody = model.messageBody as! EMImageMessageBody
+            imageContent.frame = model.contentLayout.frame
+            
+            if let image = UIImage.init(contentsOfFile: imageBody.thumbnailLocalPath) {
+                imageContent.setBackgroundImage(image, for: .normal)
+            }else{
+                imageContent.setBackgroundImage(UIImage.init(contentsOfFile: imageBody.localPath), for: .normal)
+            }
+            messageDetailView = imageContent
         default:
             break
         }
-        
         bubleImageView.addSubview(messageDetailView!)
+    }
+    
+    @objc func imageBtnClicked(_ sender:UIButton) {
+        debugPrint("image button clicked")
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -78,9 +78,28 @@ class ConversationVM: NSObject {
         let textbody = EMTextMessageBody.init(text: text)
         let message = EMMessage.init(conversationID: currentConversation!.conversationId, from: EMClient.shared().currentUsername, to: currentConversation!.conversationId, body: textbody, ext: nil)
         messages.append(ConversationItem.init(message!))
+        sendMessage(message!)
+    }
+    
+    func sendImageMessage(_ image:UIImage?) -> () {
+        guard image != nil else {
+            return
+        }
+        var data:Data? = UIImagePNGRepresentation(image!)
+        if data == nil {
+            data = UIImageJPEGRepresentation(image!, 0.1)
+        }
+        
+        let imageBody = EMImageMessageBody.init(data: data, displayName: "image")
+        let message = EMMessage.init(conversationID: currentConversation!.conversationId, from: EMClient.shared().currentUsername, to: currentConversation!.conversationId, body: imageBody, ext: nil)
+        messages.append(ConversationItem.init(message!, aImageSize:image!.size))
+        sendMessage(message!)
+    }
+    
+    func sendMessage(_ message:EMMessage) -> () {
         let index = messages.count - 1
         self.refreshUISubject.onNext(.receiveNewMessage)
-        EMChatService.shared.sendMessage(message!, progress: { (aProgress) in
+        EMChatService.shared.sendMessage(message, progress: { (aProgress) in
             
         }) { (aMessage) in
             self.messages.remove(at: index)

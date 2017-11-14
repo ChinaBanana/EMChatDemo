@@ -11,6 +11,7 @@ import SnapKit
 
 protocol InputContentViewDelegate {
     func returnBtnClicked(_ text:String) -> ()
+    func moreBtnClicked() -> ()
 }
 
 class InputContentView: UIView {
@@ -37,6 +38,14 @@ class InputContentView: UIView {
         
         moreBtn.frame = CGRect.init(x: textView.right + Limit.margin_left, y: videoBtn.top, width: videoBtn.width, height: videoBtn.height)
         moreBtn.backgroundColor = .black
+        moreBtn.addTarget(self, action: #selector(morebtnClicked), for: .touchUpInside)
+    }
+    
+    @objc func morebtnClicked() -> () {
+        guard delegate != nil else {
+            return
+        }
+        delegate?.moreBtnClicked()
     }
     
     required init?(coder aDecoder: NSCoder) {

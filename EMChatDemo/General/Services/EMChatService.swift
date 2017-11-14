@@ -143,8 +143,22 @@ extension EMChatService : EMChatManagerDelegate {
         }
     }
     
+    func downLoadFile(_ message:EMMessage, finished:@escaping(UIImage?) -> ()) {
+        EMClient.shared().chatManager.downloadMessageThumbnail(message, progress: { (progress) in
+            
+        }) { (aMessage, aError) in
+            if let messageBody = aMessage?.body as? EMImageMessageBody {
+                finished(UIImage.init(contentsOfFile: messageBody.thumbnailLocalPath))
+            }
+        }
+    }
+    
     func messagesDidReceive(_ aMessages: [Any]!) {
-        
+        if let messages = aMessages as? Array<EMMessage> {
+            for msg in messages {
+                messageSubject.onNext(.receiveNewMessage(msg))
+            }
+        }
     }
     
     func cmdMessagesDidReceive(_ aCmdMessages: [Any]!) {

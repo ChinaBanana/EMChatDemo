@@ -8,6 +8,8 @@
 
 import UIKit
 import RxSwift
+import MobileCoreServices
+import Photos
 
 class ConversationViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -112,12 +114,39 @@ class ConversationViewController: UIViewController, UITableViewDelegate, UITable
     }
 }
 
-extension ConversationViewController : InputContentViewDelegate {
+extension ConversationViewController : InputContentViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func returnBtnClicked(_ text:String) -> () {
         guard text != "" else {
             return
         }
         viewModel.sendTextMessage(text)
+    }
+    
+    func moreBtnClicked() {
+        let imagePicker = UIImagePickerController.init()
+        
+        guard UIImagePickerController.isSourceTypeAvailable(.photoLibrary) else {
+            debugPrint("Photolibarary not available")
+            return
+        }
+        imagePicker.sourceType = .photoLibrary
+        imagePicker.mediaTypes = [kUTTypeImage as String, kUTTypeMovie as String]
+        imagePicker.allowsEditing = true
+        imagePicker.delegate = self
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        debugPrint(info)
+        guard let image = info[UIImagePickerControllerOriginalImage] as? UIImage else {
+            return
+        }
+        viewModel.sendImageMessage(image)
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        
     }
 }

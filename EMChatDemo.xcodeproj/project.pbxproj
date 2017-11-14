@@ -19,7 +19,6 @@
 		85CB4DAE1F99E87A002F71DF /* ChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CB4DAD1F99E87A002F71DF /* ChatTableViewCell.swift */; };
 		85CB4DB01F99E895002F71DF /* ChatVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CB4DAF1F99E895002F71DF /* ChatVM.swift */; };
 		85CB4DB21F99E8A8002F71DF /* ChatTableViewCellVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CB4DB11F99E8A7002F71DF /* ChatTableViewCellVM.swift */; };
-		85CB4DB41F9D7D75002F71DF /* TextContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CB4DB31F9D7D75002F71DF /* TextContent.swift */; };
 		85CB4DB61F9D841D002F71DF /* Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CB4DB51F9D841D002F71DF /* Layout.swift */; };
 		85CB4DB81F9D85D6002F71DF /* ConversationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CB4DB71F9D85D6002F71DF /* ConversationItem.swift */; };
 		85CB4DBA1F9D9387002F71DF /* InputContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CB4DB91F9D9387002F71DF /* InputContentView.swift */; };
@@ -70,7 +69,6 @@
 		85CB4DAD1F99E87A002F71DF /* ChatTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatTableViewCell.swift; sourceTree = "<group>"; };
 		85CB4DAF1F99E895002F71DF /* ChatVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatVM.swift; sourceTree = "<group>"; };
 		85CB4DB11F99E8A7002F71DF /* ChatTableViewCellVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatTableViewCellVM.swift; sourceTree = "<group>"; };
-		85CB4DB31F9D7D75002F71DF /* TextContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextContent.swift; sourceTree = "<group>"; };
 		85CB4DB51F9D841D002F71DF /* Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Layout.swift; sourceTree = "<group>"; };
 		85CB4DB71F9D85D6002F71DF /* ConversationItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationItem.swift; sourceTree = "<group>"; };
 		85CB4DB91F9D9387002F71DF /* InputContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputContentView.swift; sourceTree = "<group>"; };
@@ -487,7 +485,6 @@
 			children = (
 				85CB4DA91F99DA12002F71DF /* ConversationTableViewCell.swift */,
 				85CB4DB91F9D9387002F71DF /* InputContentView.swift */,
-				85CB4DB31F9D7D75002F71DF /* TextContent.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -713,7 +710,6 @@
 				85D74E1E1F98AC32001106AC /* ContactModels.swift in Sources */,
 				85CB4DB21F99E8A8002F71DF /* ChatTableViewCellVM.swift in Sources */,
 				85CB4DB01F99E895002F71DF /* ChatVM.swift in Sources */,
-				85CB4DB41F9D7D75002F71DF /* TextContent.swift in Sources */,
 				85CB4DAA1F99DA12002F71DF /* ConversationTableViewCell.swift in Sources */,
 				85D74E0E1F987AC9001106AC /* MainViewController.swift in Sources */,
 				85CB4DBA1F9D9387002F71DF /* InputContentView.swift in Sources */,
@@ -864,10 +860,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E910A30A8399F1B433048D92 /* Pods-EMChatDemo.debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = A9U23ZY9CQ;
 				INFOPLIST_FILE = EMChatDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cocoaleeo.EMChatDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -880,10 +877,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 258ECFAD9A9DB0C063FE79E3 /* Pods-EMChatDemo.release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = A9U23ZY9CQ;
 				INFOPLIST_FILE = EMChatDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cocoaleeo.EMChatDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
